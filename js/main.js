@@ -1,8 +1,8 @@
 var lista = [
-  {"desc":"manga", "quant":"1", "valor":"5.40"},
-  {"desc":"graviola", "quant":"5", "valor":"8.75"},
-  {"desc":"uva", "quant":"8", "valor":"6.00"},
-  {"desc":"melão", "quant":"2", "valor":"3.50"}
+  // {"desc":"manga", "quant":"1", "valor":"5.40"},
+  // {"desc":"graviola", "quant":"5", "valor":"8.75"},
+  // {"desc":"uva", "quant":"8", "valor":"6.00"},
+  // {"desc":"melão", "quant":"2", "valor":"3.50"}
 ];
 
 
@@ -41,6 +41,15 @@ function formatValue(value){
   str = str.replace(".",",");
   str = "R$ " + str;
   return str;
+}
+
+function addProduto(){
+  var desc = document.getElementById("desc").value;
+  var quant = document.getElementById("quant").value;
+  var valor = document.getElementById("valor").value;
+
+  lista.unshift({"desc": desc, "quant": quant, "valor": valor});
+  setList(lista);
 }
 
 setList(lista);

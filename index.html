@@ -10,7 +10,19 @@
           <a id="navTitle" class="navbar-brand" href="index.html"></a>
     </nav>
     <div class="container-fluid">
-      <table class="table table-striped" id="listaTabela"></table>
+      <div class="form-inline">
+          <div class="form-group" style="margin-top:20px;">
+              <input type="text" class="form-control" id="desc" placeholder="Descrição do Produto">
+          </div>&nbsp;&nbsp;
+          <div class="form-group" style="margin-top:20px;">
+              <input type="number" class="form-control" id="quant" placeholder="Quantidade do Produto">
+          </div>&nbsp;&nbsp;
+          <div class="form-group" style="margin-top:20px;">
+              <input type="text" class="form-control" id="valor" placeholder="Valor do Produto">
+          </div>&nbsp;&nbsp;
+          <button onclick="addProduto();" class="btn btn-default">ADICIONAR</button>
+      </div>
+      <table class="table table-striped" id="listaTabela" style="margin-top:20px;"></table>
     </div>
 
         <script src="js/config.js"></script>
