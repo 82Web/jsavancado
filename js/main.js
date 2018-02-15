@@ -18,7 +18,7 @@ function getTotal(lista){
 function setList(lista){
   var table = '<thead><tr><th>Descrição</th><th>Quantidade</th><th>Valor</th><th>Ação</th></tr></thead><tbody>';
   for(var chave in lista){
-    table += '<tr><td>'+ formatDesc (lista[chave].desc) +'</td><td>'+ lista[chave].quant +'</td><td>'+ formatValue(lista[chave].valor) +'</td><td>Editar | Excluir</td></tr>'
+    table += '<tr><td>'+ formatDesc (lista[chave].desc) +'</td><td>'+ lista[chave].quant +'</td><td>'+ formatValue(lista[chave].valor) +'</td><td><button class="btn btn-default" onclick="setUpdate('+chave+');">EDITAR</button> | EXCLUIR</td></tr>'
     table += '</tbody';
     document.getElementById('listaTabela').innerHTML = table;
   }
@@ -50,6 +50,39 @@ function addProduto(){
 
   lista.unshift({"desc": desc, "quant": quant, "valor": valor});
   setList(lista);
+}
+
+function setUpdate(id){
+  var obj = lista[id];
+  document.getElementById("desc").value = obj.desc;
+  document.getElementById("quant").value = obj.quant;
+  document.getElementById("valor").value = obj.valor;
+  document.getElementById("btnUpdate").style.display = "inline-block";
+  document.getElementById("btnAdd").style.display = "none";
+
+  document.getElementById("inputIDUpdate").innerHTML = '<input id="IdUpdate" type="hidden" value="'+id+'">';
+}
+
+function resetForm(){
+  document.getElementById("desc").value = "";
+  document.getElementById("quant").value = "";
+  document.getElementById("valor").value = "";
+  document.getElementById("btnUpdate").style.display = "none";
+  document.getElementById("btnAdd").style.display = "inline-block";
+
+  document.getElementById("inputIDUpdate").innerHTML = "";
+}
+
+function updateProduto(){
+
+    var id = document.getElementById("IdUpdate").value;
+    var desc = document.getElementById("desc").value;
+    var quant = document.getElementById("quant").value;
+    var valor = document.getElementById("valor").value;
+
+    lista[id] = {"desc": desc, "quant": quant, "valor": valor};
+    resetForm();
+    setList(lista);
 }
 
 setList(lista);

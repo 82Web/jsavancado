@@ -20,10 +20,18 @@
           <div class="form-group" style="margin-top:20px;">
               <input type="text" class="form-control" id="valor" placeholder="Valor do Produto">
           </div>&nbsp;&nbsp;
-          <button onclick="addProduto();" class="btn btn-default">ADICIONAR</button>
+          <span id="btnUpdate" style="display: none">
+              <span id="inputIDUpdate">
+                    
+              </span>
+              <button onclick="updateProduto();" class="btn btn-success">SALVAR</button>
+              <button onclick="resetForm();" class="btn btn-danger">CANCELAR</button>
+          </span>&nbsp;
+          <button id="btnAdd" onclick="addProduto();" class="btn btn-default">ADICIONAR</button>
       </div>
       <table class="table table-striped" id="listaTabela" style="margin-top:20px;"></table>
-    </div>
+
+
 
         <script src="js/config.js"></script>
         <script src="js/main.js"></script>
