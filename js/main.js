@@ -18,7 +18,7 @@ function getTotal(lista){
 function setList(lista){
   var table = '<thead><tr><th>Descrição</th><th>Quantidade</th><th>Valor</th><th>Ação</th></tr></thead><tbody>';
   for(var chave in lista){
-    table += '<tr><td>'+ formatDesc (lista[chave].desc) +'</td><td>'+ lista[chave].quant +'</td><td>'+ formatValue(lista[chave].valor) +'</td><td><button class="btn btn-default" onclick="setUpdate('+chave+');">EDITAR</button> | EXCLUIR</td></tr>'
+    table += '<tr><td>'+ formatDesc (lista[chave].desc) +'</td><td>'+ lista[chave].quant +'</td><td>'+ formatValue(lista[chave].valor) +'</td><td><button class="btn btn-default" onclick="setUpdate('+chave+');">EDITAR</button> <button class="btn btn-default" onclick="delProduto('+chave+');">EXCLUIR</button></td></tr>'
     table += '</tbody';
     document.getElementById('listaTabela').innerHTML = table;
   }
@@ -83,6 +83,52 @@ function updateProduto(){
     lista[id] = {"desc": desc, "quant": quant, "valor": valor};
     resetForm();
     setList(lista);
+}
+
+
+// function delProduto(id) {
+//     if (confirm("Deseja deltar este item: " + id)) {
+//         lista.splice(id, 1);
+//     }
+//     setList(lista);
+// }
+
+// function delProduto(id) {
+//     if (confirm("Deseja deltar este item?")) {
+//           //UTILIZANDO A FUNÇÃO SLICE DO JS EU VOU CRIAR UM NOVO ARRAY
+//           //QUE VAI PEGAR TODOS OS REGISTROS, EXCETO O QUE EU PASSEI VIA ID
+//           //PEGANDO TODOS OS ELEMENTOS DA LISTA ATÉ O ID;
+//           var arrayAuxIni = lista.slice(0, id);
+//           //PEGANDO O VALOR DEPOIS DO ID ATÉ O FINAL DO ARRAY
+//           var arrayAuxEnd = lista.slice (id + 1);
+//           //CONCATENANDO OS DOIS ARRAYS SEM O ID PASSADO.
+//           lista = arrayAuxIni.concat(arrayAuxEnd);
+//         }
+//       setList(lista);
+//     }
+
+function delProduto(id) {
+    if (confirm("Deseja deltar este item: " + document.getElementById("desc").value)) {
+        //SE O REGISTRO FOR O ÚLTIMO DE MINHA LISTA
+        if(id === lista.length - 1){
+          // EU LIMPO O PRIMEIRO REGISTRO DA LISTA.
+          lista.pop();
+          // SE O REGISTRO FOR O PRIMEIRO DE MINHA LISTA
+        } else if(id === 0){
+          //EU LIMPO O PRIMEIRO REGISTRO DA LISTA
+          lista.shift();
+        }else{
+          //UTILIZANDO A FUNÇÃO SLICE DO JS EU VOU CRIAR UM NOVO ARRAY
+          //QUE VAI PEGAR TODOS OS REGISTROS, EXCETO O QUE EU PASSEI VIA ID
+          //PEGANDO TODOS OS ELEMENTOS DA LISTA ATÉ O ID;
+          var arrayAuxIni = lista.slice(0, id);
+          //PEGANDO O VALOR DEPOIS DO ID ATÉ O FINAL DO ARRAY
+          var arrayAuxEnd = lista.slice (id + 1);
+          //CONCATENANDO OS DOIS ARRAYS SEM O ID PASSADO.
+          lista = arrayAuxIni.concat(arrayAuxEnd);
+        }
+        setList(lista);
+    }
 }
 
 setList(lista);
